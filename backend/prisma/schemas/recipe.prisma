@@ -1,76 +1,61 @@
 model Recipe {
-  id String @id @default(cuid())
-
-  title       String
-  description String
-  calories    Int
-  cookingTime Int        @map("cooking_time")
-  difficulty  Difficulty
-
-  recipeIngredients RecipeIngredient[]
-  recipeSteps       RecipeStep[]
+  id                String             @id @default(cuid())
+  createdAt         DateTime           @default(now()) @map("created_at")
+  updatedAt         DateTime           @updatedAt @map("updated_at")
+  calories          Int
+  cookingTime       Int                @map("cooking_time")
+  description       String
+  difficulty        Difficulty
+  title             String
+  authorId          String             @map("author_id")
   comments          Comment[]
   likes             Like[]
-
-  author   User   @relation(fields: [authorId], references: [id])
-  authorId String @map("author_id")
-
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
+  recipeIngredients RecipeIngredient[]
+  recipeSteps       RecipeStep[]
+  author            User               @relation(fields: [authorId], references: [id])
 
   @@map("recipes")
 }
 
 model Ingredient {
-  id String @id @default(cuid())
-
+  id          String             @id @default(cuid())
   name        String
-  defaultUnit Unit   @map("default_unit")
-
-  recipes RecipeIngredient[]
-
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
+  defaultUnit Unit               @map("default_unit")
+  createdAt   DateTime           @default(now()) @map("created_at")
+  updatedAt   DateTime           @updatedAt @map("updated_at")
+  recipes     RecipeIngredient[]
 
   @@map("ingredients")
 }
 
 model RecipeIngredient {
-  id String @id @default(cuid())
+  id           String      @id @default(cuid())
+  quantity     Decimal
+  unit         Unit
+  ingredientId String      @map("ingredient_id")
+  recipeId     String      @map("recipe_id")
+  createdAt    DateTime    @default(now()) @map("created_at")
+  updatedAt    DateTime    @updatedAt @map("updated_at")
+  iconUrl      String      @map("icon_url")
+  name         String
+  price        Decimal
+  orderItems   OrderItem[]
+  ingredient   Ingredient  @relation(fields: [ingredientId], references: [id])
+  recipe       Recipe      @relation(fields: [recipeId], references: [id])
 
-  name     String
-  iconUrl  String  @map("icon_url")
-  quantity Decimal
-  unit     Unit
-  price    Decimal
-
-  orderItems OrderItem[]
-
-  ingredient   Ingredient @relation(fields: [ingredientId], references: [id])
-  ingredientId String     @map("ingredient_id")
-
-  recipe   Recipe @relation(fields: [recipeId], references: [id])
-  recipeId String @map("recipe_id")
-
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
-
-  @@unique([recipeId, ingredientId]) // Only one unique ingredient per recipe
+  @@unique([recipeId, ingredientId])
   @@map("recipe_ingredients")
 }
 
 model RecipeStep {
-  id String @id @default(cuid())
-
+  id          String   @id @default(cuid())
   order       Int
   title       String
   description String
-
-  recipe   Recipe @relation(fields: [recipeId], references: [id])
-  recipeId String @map("recipe_id")
-
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
+  recipeId    String   @map("recipe_id")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+  recipe      Recipe   @relation(fields: [recipeId], references: [id])
 
   @@map("recipe_steps")
 }

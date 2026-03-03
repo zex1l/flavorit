@@ -1,60 +1,49 @@
 model User {
-  id String @id @default(cuid())
-
-  email    String @unique
-  password String
-  role     Role   @default(USER)
-
-  profiles        Profile?
+  id              String           @id @default(cuid())
+  email           String           @unique
+  password        String
+  role            Role             @default(USER)
+  createdAt       DateTime         @default(now()) @map("created_at")
+  updatedAt       DateTime         @updatedAt @map("updated_at")
   bodyMeasurement BodyMeasurement?
   comments        Comment[]
-  recipes         Recipe[]
   likes           Like[]
   order           Order[]
-
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
+  profiles        Profile?
+  recipes         Recipe[]
 
   @@map("users")
 }
 
 model Profile {
-  id String @id @default(cuid())
-
-  fullName String  @map("full_name")
-  age      Int?
-  gender   Gender?
-  bio      String?
-
-  user   User   @relation(fields: [userId], references: [id])
-  userId String @unique @map("user_id")
-
+  id        String   @id @default(cuid())
+  fullName  String   @map("full_name")
+  age       Int?
+  gender    Gender?
+  bio       String?
+  userId    String   @unique @map("user_id")
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
+  user      User     @relation(fields: [userId], references: [id])
 
   @@map("profiles")
 }
 
 model BodyMeasurement {
-  id String @id @default(cuid())
-
-  heightCm     Int? @map("height_cm")
-  weightKg     Int? @map("weight_cm")
-  goalWeightKg Int? @map("goal_weight_cm")
-
-  chestCm Int? @map("chest_cm")
-  waistCm Int? @map("waist_cm")
-  thighCm Int? @map("thigh_cm")
-  armCm   Int? @map("arm_cm")
-
+  id            String         @id @default(cuid())
+  heightCm      Int?           @map("height_cm")
+  weightKg      Int?           @map("weight_cm")
+  goalWeightKg  Int?           @map("goal_weight_cm")
+  chestCm       Int?           @map("chest_cm")
+  waistCm       Int?           @map("waist_cm")
+  thighCm       Int?           @map("thigh_cm")
+  armCm         Int?           @map("arm_cm")
   activityLevel ActivityLevel?
   nutritionGoal NutritionGoal?
-
-  user   User   @relation(fields: [userId], references: [id])
-  userId String @unique @map("user_id")
-
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
+  userId        String         @unique @map("user_id")
+  createdAt     DateTime       @default(now()) @map("created_at")
+  updatedAt     DateTime       @updatedAt @map("updated_at")
+  user          User           @relation(fields: [userId], references: [id])
 
   @@map("body_measurements")
 }

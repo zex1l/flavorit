@@ -1,5 +1,5 @@
 import { Injectable, OnModuleDestroy, OnModuleInit } from '@nestjs/common';
-import { PrismaClient } from 'generated/prisma/client';
+import { PrismaClient } from 'prisma/generated/prisma/client';
 import { Pool } from 'pg';
 import { PrismaPg } from '@prisma/adapter-pg';
 
@@ -20,13 +20,14 @@ export class PrismaService
     const pool = new Pool({ connectionString });
     const adapter = new PrismaPg(pool);
 
-    super({ adapter });
+    super({ adapter, log: ['error', 'warn'] });
 
     this.pool = pool;
   }
 
   async onModuleInit() {
     await this.$connect();
+    await this.$queryRaw`SELECT 1`
     console.log('Connected to database');
   }
 

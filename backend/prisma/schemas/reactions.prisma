@@ -1,31 +1,24 @@
 model Comment {
-  id String @id @default(cuid())
-
-  content String
-
-  recipe   Recipe @relation(fields: [recipeId], references: [id])
-  recipeId String @map("recipe_id")
-
-  author   User   @relation(fields: [authorId], references: [id])
-  authorId String @map("author_id")
-
+  id        String   @id @default(cuid())
+  content   String
+  recipeId  String   @map("recipe_id")
+  authorId  String   @map("author_id")
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
+  author    User     @relation(fields: [authorId], references: [id])
+  recipe    Recipe   @relation(fields: [recipeId], references: [id])
 
   @@map("comments")
 }
 
 model Like {
-  id String @id @default(cuid())
-
-  recipe   Recipe @relation(fields: [recipeId], references: [id])
-  recipeId String @map("recipe_id")
-
-  author   User   @relation(fields: [authorId], references: [id])
-  authorId String @map("author_id")
-
+  id        String   @id @default(cuid())
+  recipeId  String   @map("recipe_id")
+  authorId  String   @map("author_id")
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
+  author    User     @relation(fields: [authorId], references: [id])
+  recipe    Recipe   @relation(fields: [recipeId], references: [id])
 
   @@unique([recipeId, authorId])
   @@map("likes")
