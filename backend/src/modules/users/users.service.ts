@@ -10,6 +10,10 @@ export class UsersService {
       where: {
         id,
       },
+      include: {
+        profiles: true,
+        bodyMeasurement: true,
+      },
     });
 
     return user;
@@ -24,6 +28,4 @@ export class UsersService {
 
     return user;
   }
-
-  async createUser(dto: any) {}
 }

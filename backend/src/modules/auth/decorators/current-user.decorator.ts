@@ -1,0 +1,22 @@
+import { createParamDecorator, ExecutionContext } from '@nestjs/common';
+import { GqlExecutionContext } from '@nestjs/graphql';
+import { UserModel } from 'prisma/generated/prisma/models';
+import { TCurrentUser, TRequestWithUser } from '../auth.interface';
+
+
+export const CurrentUser = createParamDecorator(
+  (data: keyof TCurrentUser, ctx: ExecutionContext) => {
+    let user: TCurrentUser = null;
+
+    if (ctx.getType() === 'http') {
+      user = ctx.switchToHttp().getRequest<TRequestWithUser>().user;
+    } else {
+      const context = GqlExecutionContext.create(ctx);
+      user = context.getContext<{ req: TRequestWithUser }>().req.user;
+    }
+
+    if (!user) return null;
+
+    return data ? user[data] : user;
+  },
+);

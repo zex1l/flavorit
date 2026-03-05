@@ -21,6 +21,7 @@ import {
   REFRESH_TOKEN_COOKIE_NAME,
   REGISTRATION_ERROR,
   USER_ALREADY_EXISTS_ERROR,
+  USER_NOT_FOUND,
 } from './auth.constants';
 import { isDev } from 'src/shared/utils/is-dev';
 
@@ -38,7 +39,7 @@ export class AuthService {
     try {
       const email = input.email.toLowerCase();
 
-      const userExists = this.usersService.getByEmail({ email });
+      const userExists = await this.usersService.getByEmail({ email });
 
       if (userExists) throw new BadRequestException(USER_ALREADY_EXISTS_ERROR);
 
@@ -53,6 +54,7 @@ export class AuthService {
 
       return { user, ...tokens };
     } catch (error) {
+      console.log({ error });
       throw new BadRequestException(REGISTRATION_ERROR + error);
     }
   }
@@ -105,10 +107,11 @@ export class AuthService {
     };
   }
 
+  //* ------------------------------ Set Auth Cookie Tokens --------------------------- */
   setAuthCookie(
     response: Response,
     refreshToken: string | null,
-    accessToken: string,
+    accessToken: string | null,
   ) {
     const defaultCookieOptions = {
       httpOnly: true,
@@ -132,5 +135,19 @@ export class AuthService {
             Date.now() + REFRESH_EXPIRES_TOKEN_DAYS * 24 * 60 * 60 * 1000,
           ),
     });
+  }
+
+  //* ------------------------------ Generate New Tokens --------------------------- */
+  async getNewTokens(refreshToken: string) {
+    const result =
+      await this.jwtService.verifyAsync<IAuthTokenData>(refreshToken);
+
+    const user = await this.usersService.getById({ id: result.userId });
+
+    if (!user) throw new NotFoundException(USER_NOT_FOUND);
+
+    const tokens = this.generateTokens({ userId: user.id, role: user.role });
+
+    return { user, ...tokens };
   }
 }
