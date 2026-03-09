@@ -1,68 +1,24 @@
-import { Field, Int, ObjectType, registerEnumType } from '@nestjs/graphql';
+import { Field, ID, Int, ObjectType, registerEnumType } from '@nestjs/graphql';
 import {
   ActivityLevel,
   Gender,
   NutritionGoal,
   Role,
 } from 'prisma/generated/prisma/enums';
+import { BodyMeasurementModel } from './measurment.model';
+import { ProfileModel } from './profile.model';
 
 registerEnumType(Role, { name: 'Role' });
-registerEnumType(Gender, { name: 'Gender' });
-registerEnumType(ActivityLevel, { name: 'ActivityLevel' });
-registerEnumType(NutritionGoal, { name: 'NutritionGoal' });
-
-@ObjectType()
-export class BodyMeasurementModel {
-  @Field()
-  id!: string;
-
-  @Field(() => Int, { nullable: true })
-  heightCm?: number;
-
-  @Field(() => Int, { nullable: true })
-  weightKg?: number;
-
-  @Field(() => Int, { nullable: true })
-  goalWeightKg?: number;
-
-  @Field(() => Int, { nullable: true })
-  chestCm?: number;
-
-  @Field(() => Int, { nullable: true })
-  waistCm?: number;
-
-  @Field(() => Int, { nullable: true })
-  thighCm?: number;
-
-  @Field(() => Int, { nullable: true })
-  armCm?: number;
-
-  @Field(() => ActivityLevel, { nullable: true })
-  activityLevel?: ActivityLevel;
-
-  @Field(() => NutritionGoal, { nullable: true })
-  nutritionGoal?: NutritionGoal;
-
-  @Field()
-  userId!: string;
-
-  @Field()
-  createdAt!: Date;
-
-  @Field()
-  updatedAt!: Date;
-
-}
 
 @ObjectType()
 export class UserModel {
-  @Field()
+  @Field(() => ID, { nullable: false })
   id!: string;
 
-  @Field()
+  @Field(() => String, { nullable: true })
   email!: string;
 
-  @Field()
+  @Field(() => String, { nullable: true })
   password!: string;
 
   @Field(() => Role)
@@ -76,34 +32,7 @@ export class UserModel {
 
   @Field(() => BodyMeasurementModel, { nullable: true })
   bodyMeasurement?: BodyMeasurementModel;
+
+  @Field(() => ProfileModel, { nullable: true })
+  profile?: ProfileModel;
 }
-
-@ObjectType()
-export class ProfileModel {
-  @Field()
-  id: string;
-
-  @Field()
-  fullName!: string;
-
-  @Field(() => Int, { nullable: true })
-  age?: number;
-
-  @Field(() => Gender, { nullable: true })
-  gender?: Gender;
-
-  @Field({ nullable: true })
-  bio?: string;
-
-  @Field()
-  userId!: string;
-
-  @Field()
-  createdAt!: Date;
-
-  @Field()
-  updatedAt!: Date;
-
-}
-
-

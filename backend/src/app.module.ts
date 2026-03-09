@@ -8,7 +8,8 @@ import { getGraphqlConfig } from './config/graphql.config';
 import { AuthModule } from './modules/auth/auth.module';
 import { OrdersModule } from './modules/orders/orders.module';
 import { PrismaModule } from './modules/prisma/prisma.module';
-import { RecipesModule } from './modules/srecipes/recipes.module';
+import { RecipesModule } from './modules/recipes/recipes.module';
+
 
 @Module({
   imports: [

@@ -194,7 +194,7 @@ export type UserWhereInput = {
   comments?: Prisma.CommentListRelationFilter
   likes?: Prisma.LikeListRelationFilter
   order?: Prisma.OrderListRelationFilter
-  profiles?: Prisma.XOR<Prisma.ProfileNullableScalarRelationFilter, Prisma.ProfileWhereInput> | null
+  profile?: Prisma.XOR<Prisma.ProfileNullableScalarRelationFilter, Prisma.ProfileWhereInput> | null
   recipes?: Prisma.RecipeListRelationFilter
 }
 
@@ -209,7 +209,7 @@ export type UserOrderByWithRelationInput = {
   comments?: Prisma.CommentOrderByRelationAggregateInput
   likes?: Prisma.LikeOrderByRelationAggregateInput
   order?: Prisma.OrderOrderByRelationAggregateInput
-  profiles?: Prisma.ProfileOrderByWithRelationInput
+  profile?: Prisma.ProfileOrderByWithRelationInput
   recipes?: Prisma.RecipeOrderByRelationAggregateInput
 }
 
@@ -227,7 +227,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   comments?: Prisma.CommentListRelationFilter
   likes?: Prisma.LikeListRelationFilter
   order?: Prisma.OrderListRelationFilter
-  profiles?: Prisma.XOR<Prisma.ProfileNullableScalarRelationFilter, Prisma.ProfileWhereInput> | null
+  profile?: Prisma.XOR<Prisma.ProfileNullableScalarRelationFilter, Prisma.ProfileWhereInput> | null
   recipes?: Prisma.RecipeListRelationFilter
 }, "id" | "email">
 
@@ -266,7 +266,7 @@ export type UserCreateInput = {
   comments?: Prisma.CommentCreateNestedManyWithoutAuthorInput
   likes?: Prisma.LikeCreateNestedManyWithoutAuthorInput
   order?: Prisma.OrderCreateNestedManyWithoutUserInput
-  profiles?: Prisma.ProfileCreateNestedOneWithoutUserInput
+  profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
   recipes?: Prisma.RecipeCreateNestedManyWithoutAuthorInput
 }
 
@@ -281,7 +281,7 @@ export type UserUncheckedCreateInput = {
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutAuthorInput
   likes?: Prisma.LikeUncheckedCreateNestedManyWithoutAuthorInput
   order?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
-  profiles?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
+  profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
   recipes?: Prisma.RecipeUncheckedCreateNestedManyWithoutAuthorInput
 }
 
@@ -296,7 +296,7 @@ export type UserUpdateInput = {
   comments?: Prisma.CommentUpdateManyWithoutAuthorNestedInput
   likes?: Prisma.LikeUpdateManyWithoutAuthorNestedInput
   order?: Prisma.OrderUpdateManyWithoutUserNestedInput
-  profiles?: Prisma.ProfileUpdateOneWithoutUserNestedInput
+  profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
   recipes?: Prisma.RecipeUpdateManyWithoutAuthorNestedInput
 }
 
@@ -311,7 +311,7 @@ export type UserUncheckedUpdateInput = {
   comments?: Prisma.CommentUncheckedUpdateManyWithoutAuthorNestedInput
   likes?: Prisma.LikeUncheckedUpdateManyWithoutAuthorNestedInput
   order?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
-  profiles?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
+  profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
   recipes?: Prisma.RecipeUncheckedUpdateManyWithoutAuthorNestedInput
 }
 
@@ -434,18 +434,18 @@ export type EnumRoleFieldUpdateOperationsInput = {
   set?: $Enums.Role
 }
 
-export type UserCreateNestedOneWithoutProfilesInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutProfilesInput, Prisma.UserUncheckedCreateWithoutProfilesInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutProfilesInput
+export type UserCreateNestedOneWithoutProfileInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutProfileInput, Prisma.UserUncheckedCreateWithoutProfileInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutProfileInput
   connect?: Prisma.UserWhereUniqueInput
 }
 
-export type UserUpdateOneRequiredWithoutProfilesNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutProfilesInput, Prisma.UserUncheckedCreateWithoutProfilesInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutProfilesInput
-  upsert?: Prisma.UserUpsertWithoutProfilesInput
+export type UserUpdateOneRequiredWithoutProfileNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutProfileInput, Prisma.UserUncheckedCreateWithoutProfileInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutProfileInput
+  upsert?: Prisma.UserUpsertWithoutProfileInput
   connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutProfilesInput, Prisma.UserUpdateWithoutProfilesInput>, Prisma.UserUncheckedUpdateWithoutProfilesInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutProfileInput, Prisma.UserUpdateWithoutProfileInput>, Prisma.UserUncheckedUpdateWithoutProfileInput>
 }
 
 export type UserCreateNestedOneWithoutBodyMeasurementInput = {
@@ -472,7 +472,7 @@ export type UserCreateWithoutOrderInput = {
   bodyMeasurement?: Prisma.BodyMeasurementCreateNestedOneWithoutUserInput
   comments?: Prisma.CommentCreateNestedManyWithoutAuthorInput
   likes?: Prisma.LikeCreateNestedManyWithoutAuthorInput
-  profiles?: Prisma.ProfileCreateNestedOneWithoutUserInput
+  profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
   recipes?: Prisma.RecipeCreateNestedManyWithoutAuthorInput
 }
 
@@ -486,7 +486,7 @@ export type UserUncheckedCreateWithoutOrderInput = {
   bodyMeasurement?: Prisma.BodyMeasurementUncheckedCreateNestedOneWithoutUserInput
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutAuthorInput
   likes?: Prisma.LikeUncheckedCreateNestedManyWithoutAuthorInput
-  profiles?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
+  profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
   recipes?: Prisma.RecipeUncheckedCreateNestedManyWithoutAuthorInput
 }
 
@@ -516,7 +516,7 @@ export type UserUpdateWithoutOrderInput = {
   bodyMeasurement?: Prisma.BodyMeasurementUpdateOneWithoutUserNestedInput
   comments?: Prisma.CommentUpdateManyWithoutAuthorNestedInput
   likes?: Prisma.LikeUpdateManyWithoutAuthorNestedInput
-  profiles?: Prisma.ProfileUpdateOneWithoutUserNestedInput
+  profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
   recipes?: Prisma.RecipeUpdateManyWithoutAuthorNestedInput
 }
 
@@ -530,7 +530,7 @@ export type UserUncheckedUpdateWithoutOrderInput = {
   bodyMeasurement?: Prisma.BodyMeasurementUncheckedUpdateOneWithoutUserNestedInput
   comments?: Prisma.CommentUncheckedUpdateManyWithoutAuthorNestedInput
   likes?: Prisma.LikeUncheckedUpdateManyWithoutAuthorNestedInput
-  profiles?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
+  profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
   recipes?: Prisma.RecipeUncheckedUpdateManyWithoutAuthorNestedInput
 }
 
@@ -544,7 +544,7 @@ export type UserCreateWithoutCommentsInput = {
   bodyMeasurement?: Prisma.BodyMeasurementCreateNestedOneWithoutUserInput
   likes?: Prisma.LikeCreateNestedManyWithoutAuthorInput
   order?: Prisma.OrderCreateNestedManyWithoutUserInput
-  profiles?: Prisma.ProfileCreateNestedOneWithoutUserInput
+  profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
   recipes?: Prisma.RecipeCreateNestedManyWithoutAuthorInput
 }
 
@@ -558,7 +558,7 @@ export type UserUncheckedCreateWithoutCommentsInput = {
   bodyMeasurement?: Prisma.BodyMeasurementUncheckedCreateNestedOneWithoutUserInput
   likes?: Prisma.LikeUncheckedCreateNestedManyWithoutAuthorInput
   order?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
-  profiles?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
+  profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
   recipes?: Prisma.RecipeUncheckedCreateNestedManyWithoutAuthorInput
 }
 
@@ -588,7 +588,7 @@ export type UserUpdateWithoutCommentsInput = {
   bodyMeasurement?: Prisma.BodyMeasurementUpdateOneWithoutUserNestedInput
   likes?: Prisma.LikeUpdateManyWithoutAuthorNestedInput
   order?: Prisma.OrderUpdateManyWithoutUserNestedInput
-  profiles?: Prisma.ProfileUpdateOneWithoutUserNestedInput
+  profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
   recipes?: Prisma.RecipeUpdateManyWithoutAuthorNestedInput
 }
 
@@ -602,7 +602,7 @@ export type UserUncheckedUpdateWithoutCommentsInput = {
   bodyMeasurement?: Prisma.BodyMeasurementUncheckedUpdateOneWithoutUserNestedInput
   likes?: Prisma.LikeUncheckedUpdateManyWithoutAuthorNestedInput
   order?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
-  profiles?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
+  profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
   recipes?: Prisma.RecipeUncheckedUpdateManyWithoutAuthorNestedInput
 }
 
@@ -616,7 +616,7 @@ export type UserCreateWithoutLikesInput = {
   bodyMeasurement?: Prisma.BodyMeasurementCreateNestedOneWithoutUserInput
   comments?: Prisma.CommentCreateNestedManyWithoutAuthorInput
   order?: Prisma.OrderCreateNestedManyWithoutUserInput
-  profiles?: Prisma.ProfileCreateNestedOneWithoutUserInput
+  profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
   recipes?: Prisma.RecipeCreateNestedManyWithoutAuthorInput
 }
 
@@ -630,7 +630,7 @@ export type UserUncheckedCreateWithoutLikesInput = {
   bodyMeasurement?: Prisma.BodyMeasurementUncheckedCreateNestedOneWithoutUserInput
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutAuthorInput
   order?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
-  profiles?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
+  profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
   recipes?: Prisma.RecipeUncheckedCreateNestedManyWithoutAuthorInput
 }
 
@@ -660,7 +660,7 @@ export type UserUpdateWithoutLikesInput = {
   bodyMeasurement?: Prisma.BodyMeasurementUpdateOneWithoutUserNestedInput
   comments?: Prisma.CommentUpdateManyWithoutAuthorNestedInput
   order?: Prisma.OrderUpdateManyWithoutUserNestedInput
-  profiles?: Prisma.ProfileUpdateOneWithoutUserNestedInput
+  profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
   recipes?: Prisma.RecipeUpdateManyWithoutAuthorNestedInput
 }
 
@@ -674,7 +674,7 @@ export type UserUncheckedUpdateWithoutLikesInput = {
   bodyMeasurement?: Prisma.BodyMeasurementUncheckedUpdateOneWithoutUserNestedInput
   comments?: Prisma.CommentUncheckedUpdateManyWithoutAuthorNestedInput
   order?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
-  profiles?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
+  profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
   recipes?: Prisma.RecipeUncheckedUpdateManyWithoutAuthorNestedInput
 }
 
@@ -689,7 +689,7 @@ export type UserCreateWithoutRecipesInput = {
   comments?: Prisma.CommentCreateNestedManyWithoutAuthorInput
   likes?: Prisma.LikeCreateNestedManyWithoutAuthorInput
   order?: Prisma.OrderCreateNestedManyWithoutUserInput
-  profiles?: Prisma.ProfileCreateNestedOneWithoutUserInput
+  profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutRecipesInput = {
@@ -703,7 +703,7 @@ export type UserUncheckedCreateWithoutRecipesInput = {
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutAuthorInput
   likes?: Prisma.LikeUncheckedCreateNestedManyWithoutAuthorInput
   order?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
-  profiles?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
+  profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutRecipesInput = {
@@ -733,7 +733,7 @@ export type UserUpdateWithoutRecipesInput = {
   comments?: Prisma.CommentUpdateManyWithoutAuthorNestedInput
   likes?: Prisma.LikeUpdateManyWithoutAuthorNestedInput
   order?: Prisma.OrderUpdateManyWithoutUserNestedInput
-  profiles?: Prisma.ProfileUpdateOneWithoutUserNestedInput
+  profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRecipesInput = {
@@ -747,10 +747,10 @@ export type UserUncheckedUpdateWithoutRecipesInput = {
   comments?: Prisma.CommentUncheckedUpdateManyWithoutAuthorNestedInput
   likes?: Prisma.LikeUncheckedUpdateManyWithoutAuthorNestedInput
   order?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
-  profiles?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
+  profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
 }
 
-export type UserCreateWithoutProfilesInput = {
+export type UserCreateWithoutProfileInput = {
   id?: string
   email: string
   password: string
@@ -764,7 +764,7 @@ export type UserCreateWithoutProfilesInput = {
   recipes?: Prisma.RecipeCreateNestedManyWithoutAuthorInput
 }
 
-export type UserUncheckedCreateWithoutProfilesInput = {
+export type UserUncheckedCreateWithoutProfileInput = {
   id?: string
   email: string
   password: string
@@ -778,23 +778,23 @@ export type UserUncheckedCreateWithoutProfilesInput = {
   recipes?: Prisma.RecipeUncheckedCreateNestedManyWithoutAuthorInput
 }
 
-export type UserCreateOrConnectWithoutProfilesInput = {
+export type UserCreateOrConnectWithoutProfileInput = {
   where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutProfilesInput, Prisma.UserUncheckedCreateWithoutProfilesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutProfileInput, Prisma.UserUncheckedCreateWithoutProfileInput>
 }
 
-export type UserUpsertWithoutProfilesInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutProfilesInput, Prisma.UserUncheckedUpdateWithoutProfilesInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutProfilesInput, Prisma.UserUncheckedCreateWithoutProfilesInput>
+export type UserUpsertWithoutProfileInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutProfileInput, Prisma.UserUncheckedUpdateWithoutProfileInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutProfileInput, Prisma.UserUncheckedCreateWithoutProfileInput>
   where?: Prisma.UserWhereInput
 }
 
-export type UserUpdateToOneWithWhereWithoutProfilesInput = {
+export type UserUpdateToOneWithWhereWithoutProfileInput = {
   where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutProfilesInput, Prisma.UserUncheckedUpdateWithoutProfilesInput>
+  data: Prisma.XOR<Prisma.UserUpdateWithoutProfileInput, Prisma.UserUncheckedUpdateWithoutProfileInput>
 }
 
-export type UserUpdateWithoutProfilesInput = {
+export type UserUpdateWithoutProfileInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
@@ -808,7 +808,7 @@ export type UserUpdateWithoutProfilesInput = {
   recipes?: Prisma.RecipeUpdateManyWithoutAuthorNestedInput
 }
 
-export type UserUncheckedUpdateWithoutProfilesInput = {
+export type UserUncheckedUpdateWithoutProfileInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
@@ -832,7 +832,7 @@ export type UserCreateWithoutBodyMeasurementInput = {
   comments?: Prisma.CommentCreateNestedManyWithoutAuthorInput
   likes?: Prisma.LikeCreateNestedManyWithoutAuthorInput
   order?: Prisma.OrderCreateNestedManyWithoutUserInput
-  profiles?: Prisma.ProfileCreateNestedOneWithoutUserInput
+  profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
   recipes?: Prisma.RecipeCreateNestedManyWithoutAuthorInput
 }
 
@@ -846,7 +846,7 @@ export type UserUncheckedCreateWithoutBodyMeasurementInput = {
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutAuthorInput
   likes?: Prisma.LikeUncheckedCreateNestedManyWithoutAuthorInput
   order?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
-  profiles?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
+  profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
   recipes?: Prisma.RecipeUncheckedCreateNestedManyWithoutAuthorInput
 }
 
@@ -876,7 +876,7 @@ export type UserUpdateWithoutBodyMeasurementInput = {
   comments?: Prisma.CommentUpdateManyWithoutAuthorNestedInput
   likes?: Prisma.LikeUpdateManyWithoutAuthorNestedInput
   order?: Prisma.OrderUpdateManyWithoutUserNestedInput
-  profiles?: Prisma.ProfileUpdateOneWithoutUserNestedInput
+  profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
   recipes?: Prisma.RecipeUpdateManyWithoutAuthorNestedInput
 }
 
@@ -890,7 +890,7 @@ export type UserUncheckedUpdateWithoutBodyMeasurementInput = {
   comments?: Prisma.CommentUncheckedUpdateManyWithoutAuthorNestedInput
   likes?: Prisma.LikeUncheckedUpdateManyWithoutAuthorNestedInput
   order?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
-  profiles?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
+  profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
   recipes?: Prisma.RecipeUncheckedUpdateManyWithoutAuthorNestedInput
 }
 
@@ -963,7 +963,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   comments?: boolean | Prisma.User$commentsArgs<ExtArgs>
   likes?: boolean | Prisma.User$likesArgs<ExtArgs>
   order?: boolean | Prisma.User$orderArgs<ExtArgs>
-  profiles?: boolean | Prisma.User$profilesArgs<ExtArgs>
+  profile?: boolean | Prisma.User$profileArgs<ExtArgs>
   recipes?: boolean | Prisma.User$recipesArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
@@ -1001,7 +1001,7 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   comments?: boolean | Prisma.User$commentsArgs<ExtArgs>
   likes?: boolean | Prisma.User$likesArgs<ExtArgs>
   order?: boolean | Prisma.User$orderArgs<ExtArgs>
-  profiles?: boolean | Prisma.User$profilesArgs<ExtArgs>
+  profile?: boolean | Prisma.User$profileArgs<ExtArgs>
   recipes?: boolean | Prisma.User$recipesArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
@@ -1015,7 +1015,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     comments: Prisma.$CommentPayload<ExtArgs>[]
     likes: Prisma.$LikePayload<ExtArgs>[]
     order: Prisma.$OrderPayload<ExtArgs>[]
-    profiles: Prisma.$ProfilePayload<ExtArgs> | null
+    profile: Prisma.$ProfilePayload<ExtArgs> | null
     recipes: Prisma.$RecipePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -1423,7 +1423,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   comments<T extends Prisma.User$commentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$commentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   likes<T extends Prisma.User$likesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$likesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LikePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   order<T extends Prisma.User$orderArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$orderArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  profiles<T extends Prisma.User$profilesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$profilesArgs<ExtArgs>>): Prisma.Prisma__ProfileClient<runtime.Types.Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  profile<T extends Prisma.User$profileArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$profileArgs<ExtArgs>>): Prisma.Prisma__ProfileClient<runtime.Types.Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   recipes<T extends Prisma.User$recipesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$recipesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RecipePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1939,9 +1939,9 @@ export type User$orderArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
 }
 
 /**
- * User.profiles
+ * User.profile
  */
-export type User$profilesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$profileArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the Profile
    */

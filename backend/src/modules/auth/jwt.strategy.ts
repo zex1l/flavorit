@@ -18,10 +18,10 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     });
   }
 
-  validate({ id }: { id: string }): Promise<User | null> {
+  validate({ userId }: { userId: string }): Promise<User | null> {
     return this.prismaService.user.findUnique({
-      where: { id },
-      include: { profiles: true, bodyMeasurement: true },
+      where: { id: userId },
+      include: { profile: true, bodyMeasurement: true },
     });
   }
 }
